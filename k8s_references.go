@@ -19,6 +19,7 @@ package klog
 import (
 	"fmt"
 	"reflect"
+	"strings"
 
 	"github.com/go-logr/logr"
 )
@@ -31,7 +32,7 @@ type ObjectRef struct {
 
 func (ref ObjectRef) String() string {
 	if ref.Namespace != "" {
-		return fmt.Sprintf("%s/%s", ref.Namespace, ref.Name)
+		return strings.Join([]string{ref.Namespace, ref.Name}, "/")
 	}
 	return ref.Name
 }
@@ -121,7 +122,7 @@ func (ks kobjSlice) String() string {
 	if err != nil {
 		return err.Error()
 	}
-	return fmt.Sprintf("%v", objectRefs)
+	return fmt.Sprint(objectRefs)
 }
 
 func (ks kobjSlice) MarshalLog() interface{} {

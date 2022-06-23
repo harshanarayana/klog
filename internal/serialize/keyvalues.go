@@ -114,7 +114,7 @@ func KVListFormat(b *bytes.Buffer, keysAndValues ...interface{}) {
 			// normally it should be.
 			b.WriteString(sK)
 		} else {
-			b.WriteString(fmt.Sprintf("%s", k))
+			b.WriteString(fmt.Sprint(k))
 		}
 
 		// The type checks are sorted so that more frequently used ones

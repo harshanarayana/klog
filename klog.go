@@ -344,7 +344,7 @@ func (t *traceLocation) String() string {
 	// Lock because the type is not atomic. TODO: clean this up.
 	logging.mu.Lock()
 	defer logging.mu.Unlock()
-	return fmt.Sprintf("%s:%d", t.file, t.line)
+	return strings.Join([]string{t.file, strconv.Itoa(t.line)}, ":")
 }
 
 // Get is part of the (Go 1.2) flag.Getter interface. It always returns nil for this flag type since the
